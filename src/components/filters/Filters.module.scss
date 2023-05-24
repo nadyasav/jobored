@@ -1,0 +1,79 @@
+.filters {
+  padding: 20px;
+  background-color: var(--el-background);
+  border: 1px solid #eaebed;
+  border-radius: 12px;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  &__reset_btn {
+    color: #acadb9;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.428;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    padding-right: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: color 0.1s;
+
+    &:hover {
+      color: var(--hover);
+
+      span::before,
+      span::after {
+        background-color: var(--hover);
+      }
+    }
+
+    &:active {
+      color: var(--active);
+
+      span::before,
+      span::after {
+        background-color: var(--active);
+      }
+    }
+
+    span {
+      height: 12px;
+      width: 12px;
+      position: relative;
+
+      &::before,
+      &::after {
+        width: 1px;
+        height: 100%;
+        transform: rotate(45deg);
+        position: absolute;
+        right: 0;
+        top: 0;
+        content: '';
+        background-color: #acadb9;
+      }
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  &__item {
+    margin-top: 1.25rem;
+  }
+
+  &__item_payment:last-child {
+    margin-top: 8px;
+  }
+
+  &__btn {
+    margin-top: 20px;
+  }
+}

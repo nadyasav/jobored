@@ -1,0 +1,32 @@
+.vacancie {
+  padding: 2.5rem 0 3.188rem;
+
+  &__card {
+    max-width: 773px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__description {
+    border: 1px solid #eaebed;
+    border-radius: 12px;
+    background: var(--el-background);
+    padding: 1.438rem;
+
+    p {
+      line-height: 1.4;
+    }
+  }
+
+  &__empty {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15vh;
+
+    &_link {
+      margin-top: 2rem;
+    }
+  }
+}

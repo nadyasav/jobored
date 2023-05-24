@@ -1,0 +1,31 @@
+.main {
+  padding: 2.5rem 0 2.75rem;
+
+  &__pagination_box {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+
+  &__inner {
+    display: flex;
+  }
+
+  &__filters {
+    max-width: 315px;
+    width: 100%;
+    margin-right: 1.75rem;
+  }
+
+  &__content {
+    flex-grow: 1;
+  }
+
+  &__cards {
+    margin-top: 16px;
+  }
+
+  &__card__empty {
+    margin-top: 10vh;
+  }
+}

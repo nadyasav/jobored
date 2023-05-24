@@ -1,0 +1,27 @@
+.label {
+  display: block;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+
+  input {
+    display: none;
+  }
+
+  input:checked + .svg > path {
+    stroke: var(--accent-color);
+  }
+
+  input:checked + .svg {
+    fill: var(--accent-color);
+  }
+
+  path {
+    transition: stroke 0.1s;
+  }
+
+  &:hover .svg > path {
+    stroke: var(--accent-color);
+    transition: stroke 0.1s;
+  }
+}
