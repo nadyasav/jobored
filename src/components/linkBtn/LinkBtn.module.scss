@@ -1,0 +1,16 @@
+.link_btn {
+  display: inline-block;
+  background-color: var(--accent-color-light);
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 157%;
+  color: var(--accent-color-dark);
+  transition: background-color 0.1s, color 0.1s;
+
+  &:hover {
+    background-color: var(--hover);
+    color: var(--color-text-light);
+  }
+}

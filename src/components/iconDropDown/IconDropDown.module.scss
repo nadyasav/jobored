@@ -1,0 +1,12 @@
+.svg {
+  transition: transform 0.1s;
+
+  &.open {
+    transform: rotate(180deg);
+    transition: transform 0.1s;
+
+    path {
+      stroke: var(--accent-color);
+    }
+  }
+}

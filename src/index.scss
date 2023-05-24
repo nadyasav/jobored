@@ -1,0 +1,150 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+article > * + * {
+  margin-top: 1em;
+}
+input,
+button,
+textarea,
+select {
+  padding: 0;
+  font: inherit;
+}
+
+b {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1;
+  margin-top: 1.25rem;
+}
+
+ul,
+ol {
+  margin-top: 1rem;
+  padding-left: 25px;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), url('./assets/fonts/Inter-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), url('./assets/fonts/Inter-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), url('./assets/fonts/Inter-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), url('./assets/fonts/Inter-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+//color theme variables
+:root {
+  --light-accent-color: #5e96fc;
+  --light-accent-color-light: #deecff;
+  --light-accent-color-dark: #3b7cd3;
+  --light-el-background: #ffffff;
+  --light-main-bg: #f7f7f8;
+  --light-main-color: #232134;
+  --light-hover: #92c1ff;
+  --light-active: #5e96fc;
+  --light-color-text-light: #ffffff;
+}
+
+html {
+  font-size: 16px;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter';
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+#root {
+  height: 100%;
+}
+
+.app {
+  --accent-color: var(--light-accent-color);
+  --accent-color-light: var(--light-accent-color-light);
+  --accent-color-dark: var(--light-accent-color-dark);
+  --el-background: var(--light-el-background);
+  --main-bg: var(--light-main-bg);
+  --main-color: var(--light-main-color);
+  --hover: var(--light-hover);
+  --active: var(--light-active);
+  --color-text-light: var(--light-color-text-light);
+
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--main-bg);
+  color: var(--main-color);
+}
+
+.main {
+  flex-grow: 1;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1;
+}

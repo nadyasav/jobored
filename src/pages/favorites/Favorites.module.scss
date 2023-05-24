@@ -1,0 +1,28 @@
+.favorites {
+  height: 100%;
+  padding: 2.5rem 0 2.75rem;
+
+  &__inner {
+    max-width: 773px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__pagination_box {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__empty {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15vh;
+  }
+
+  &__empty_link {
+    margin-top: 2rem;
+  }
+}
