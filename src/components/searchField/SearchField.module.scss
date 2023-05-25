@@ -46,14 +46,22 @@
   display: none;
 }
 .search_btn__box {
-  padding: 8px 12px 8px 36px;
+  padding: 8px 12px;
 }
+
+.search_btn {
+  height: 32px;
+}
+
 @media only screen and (max-width: 420px) {
-  .search_btn__box {
-    margin-left: 10px;
+  .search_box {
+    padding-left: 26px;
+
+    &::before {
+      left: 5px;
+    }
   }
-  .search_input {
-    padding: 0 10px;
-    font-size: 16px;
+  .search_btn__box {
+    padding: 5px;
   }
 }

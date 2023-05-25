@@ -47,10 +47,10 @@ export const SearchField = (props: ISearchField) => {
       />
       <span className={styles.search_btn__box}>
         <CustomButton
+          className={styles.search_btn}
           dataElem="search-button"
           type="button"
           handleClick={handleInputValue}
-          customStyles={{ ['height']: '32px' }}
         >
           Поиск
         </CustomButton>
