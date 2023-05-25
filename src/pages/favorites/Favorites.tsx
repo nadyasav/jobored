@@ -9,7 +9,7 @@ import { VacancieCard } from '../../components/vacancieCard/VacancieCard';
 import { REQUEST_STATUS, ROUTES } from '../../constants/constants';
 import { Preloader } from '../../components/preloader/Preloader';
 import { LinkBtn } from '../../components/linkBtn/LinkBtn';
-import { Pagination } from '@mantine/core';
+import { PaginationEl } from '../../components/paginationEL/PaginationEl';
 
 export const Favorites = () => {
   const dispatch = useAppDispatch();
@@ -37,7 +37,7 @@ export const Favorites = () => {
     } else {
       dispatch(resetVacancies());
     }
-  }, [dispatch, favorites, favorites.length, activePage]);
+  }, [dispatch, favorites, favorites.length, activePage, count]);
 
   return (
     <section className={styles.favorites}>
@@ -51,9 +51,9 @@ export const Favorites = () => {
             </div>
             {total > 0 && (
               <div className={styles.favorites__pagination_box}>
-                <Pagination
-                  value={activePage}
-                  onChange={setactivePage}
+                <PaginationEl
+                  activePage={activePage}
+                  pageOnChange={setactivePage}
                   total={total}
                   siblings={1}
                 />

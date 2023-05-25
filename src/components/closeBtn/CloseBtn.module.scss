@@ -1,0 +1,25 @@
+.close_btn {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border: none;
+  display: block;
+  background: transparent;
+}
+.close_btn:focus {
+  background: transparent;
+}
+.close_btn::before,
+.close_btn::after {
+  transform: rotate(45deg);
+  position: absolute;
+  left: 50%;
+  top: 0;
+  content: '';
+  height: 100%;
+  width: 2px;
+  background-color: var(--el-background);
+}
+.close_btn::after {
+  transform: rotate(-45deg);
+}

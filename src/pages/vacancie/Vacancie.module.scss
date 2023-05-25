@@ -23,10 +23,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 15vh;
+    margin-top: 5rem;
 
     &_link {
       margin-top: 2rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 470px) {
+  .vacancie {
+    &__description {
+      padding: 15px;
     }
   }
 }

@@ -34,6 +34,7 @@
   &__conditions {
     margin-top: 12px;
     display: flex;
+    flex-wrap: wrap;
   }
 
   &__conditions_payment {
@@ -100,5 +101,46 @@
   .card__town {
     margin-top: 1rem;
     line-height: 1.4;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .card.large {
+    .card__title {
+      font-weight: 600;
+      line-height: 1.2;
+      font-size: 1.25rem;
+    }
+
+    .card__conditions {
+      font-size: 1rem;
+    }
+
+    .card__conditions_payment {
+      font-weight: 600;
+    }
+
+    .card__town {
+      margin-top: 12px;
+    }
+  }
+}
+
+@media only screen and (max-width: 470px) {
+  .card {
+    padding: 15px;
+
+    &__conditions {
+      display: block;
+    }
+
+    &__conditions_type {
+      padding-left: 0;
+      margin-top: 8px;
+
+      &::before {
+        display: none;
+      }
+    }
   }
 }

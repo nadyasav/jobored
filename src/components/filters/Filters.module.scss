@@ -1,5 +1,5 @@
 .filters {
-  padding: 20px;
+  padding: 19px;
   background-color: var(--el-background);
   border: 1px solid #eaebed;
   border-radius: 12px;
@@ -19,7 +19,7 @@
     border: none;
     cursor: pointer;
     margin-left: 10px;
-    padding-right: 4px;
+    padding-right: 6px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -66,7 +66,7 @@
   }
 
   &__item {
-    margin-top: 1.25rem;
+    margin-top: 1.15rem;
   }
 
   &__item_payment:last-child {

@@ -37,7 +37,6 @@ export const SearchField = (props: ISearchField) => {
   return (
     <div className={styles.search_box}>
       <input
-        data-testid="searchInput"
         type="search"
         className={styles.search_input}
         onKeyDown={handleKeyDown}
@@ -47,7 +46,12 @@ export const SearchField = (props: ISearchField) => {
         data-elem="search-input"
       />
       <span className={styles.search_btn__box}>
-        <CustomButton dataElem="search-button" type="button" handleClick={handleInputValue}>
+        <CustomButton
+          dataElem="search-button"
+          type="button"
+          handleClick={handleInputValue}
+          customStyles={{ ['height']: '32px' }}
+        >
           Поиск
         </CustomButton>
       </span>
