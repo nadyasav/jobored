@@ -23,3 +23,8 @@ export const REQUEST_STATUS = {
   fulfilled: 'fulfilled',
   rejected: 'rejected',
 };
+
+export const CSS_COLORS_lIGHT = {
+  accentColor: '#5e96fc',
+  mainColor: '#232134',
+};

@@ -12,7 +12,10 @@ import { IVacancieParams } from '../../types/types';
 import { EmptyState } from '../../components/emptyState/EmptyState';
 import { SearchField } from '../../components/searchField/SearchField';
 import { setKeyword } from '../../store/filtersSlice';
-import { Pagination } from '@mantine/core';
+import { PaginationEl } from '../../components/paginationEL/PaginationEl';
+import { FiltersBtn } from '../../components/filtersBtn/FiltersBtn';
+import cn from 'classnames';
+import { CloseBtn } from '../../components/closeBtn/CloseBtn';
 
 export const Main = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +24,7 @@ export const Main = () => {
   const { catalogues } = useAppSelector((state) => state.catalogues);
   const { vacancies, total, page, count } = useAppSelector((state) => state.vacancies);
   const { keyword, catalogue, payment_from, payment_to } = useAppSelector((state) => state.filters);
+  const [filtersBtnState, setFiltersBtnState] = useState(false);
   const [activePage, setactivePage] = useState(page + 1);
   const [requestParams, setRequestParams] = useState<IVacancieParams>({
     page: page,
@@ -63,7 +67,7 @@ export const Main = () => {
         page: activePage - 1,
       })
     );
-  }, [requestParams, activePage]);
+  }, [requestParams, activePage, dispatch]);
 
   const handleApplyFilters = () => {
     updateVacancies();
@@ -73,16 +77,26 @@ export const Main = () => {
     dispatch(setKeyword(value));
   };
 
+  const handleFiltersBtnClick = (value: boolean) => {
+    setFiltersBtnState(value);
+  };
+
   return (
     <>
       <section className={styles.main}>
         <Wrapper>
-          <div className={styles.main__container}>
-            <div className={styles.main__inner}>
+          <div className={styles.main__inner}>
+            <div className={cn(styles.main__filters_overlay, filtersBtnState && styles.active)}>
               <div className={styles.main__filters}>
                 {catalogues.length > 0 && <Filters sendFilters={handleApplyFilters} />}
               </div>
-              <div className={styles.main__content}>
+              <div className={styles.main__filters__close_btn}>
+                <CloseBtn sloseState={filtersBtnState} handleClick={handleFiltersBtnClick} />
+              </div>
+            </div>
+
+            <div className={styles.main__content}>
+              <div className={styles.main__content_top}>
                 <div className={styles.main__search}>
                   <SearchField
                     searchValue={keyword}
@@ -90,32 +104,39 @@ export const Main = () => {
                     sendInputValue={handleApplyFilters}
                   />
                 </div>
-                <div className={styles.main__cards}>
-                  {vacancies.length > 0 ? (
-                    vacancies.map((item) => {
-                      return favorites.indexOf(item.id) > -1 ? (
-                        <VacancieCard id={item.id} data={item} key={item.id} favorite={true} />
-                      ) : (
-                        <VacancieCard id={item.id} data={item} key={item.id} favorite={false} />
-                      );
-                    })
-                  ) : (
-                    <div className={styles.main__card__empty}>
-                      <EmptyState text="Упс, здесь ничего нет!" />
-                    </div>
-                  )}
+                <div className={styles.main__filters_btn}>
+                  <FiltersBtn
+                    filtersBtnState={filtersBtnState}
+                    handleClick={handleFiltersBtnClick}
+                  />
                 </div>
-                {total > 0 && (
-                  <div className={styles.main__pagination_box}>
-                    <Pagination
-                      value={activePage}
-                      onChange={setactivePage}
-                      total={total}
-                      siblings={1}
-                    />
+              </div>
+
+              <div className={styles.main__cards}>
+                {vacancies.length > 0 ? (
+                  vacancies.map((item) => {
+                    return favorites.indexOf(item.id) > -1 ? (
+                      <VacancieCard id={item.id} data={item} key={item.id} favorite={true} />
+                    ) : (
+                      <VacancieCard id={item.id} data={item} key={item.id} favorite={false} />
+                    );
+                  })
+                ) : (
+                  <div className={styles.main__card__empty}>
+                    <EmptyState text="Упс, здесь ничего нет!" />
                   </div>
                 )}
               </div>
+              {total > 0 && (
+                <div className={styles.main__pagination_box}>
+                  <PaginationEl
+                    activePage={activePage}
+                    pageOnChange={setactivePage}
+                    total={total}
+                    siblings={1}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </Wrapper>
