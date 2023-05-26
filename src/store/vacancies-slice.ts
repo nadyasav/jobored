@@ -1,6 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import apiAxios from '../api';
-import { REQUEST_STATUS } from '../constants/constants';
+import {
+  COUNT_VACANCIES_ON_PAGE,
+  MAX_TOTAL_RESPONCE,
+  NUMBER_START_PAGE,
+  REQUEST_STATUS,
+} from '../constants/constants';
 import { IVacancie, IVacancieParams } from '../types/types';
 import { getLocalStorage } from '../utils/get-local-storage';
 
@@ -17,8 +22,8 @@ const initialState: IVacanciesSlice = {
   vacancies: [],
   vacanciesStatus: '',
   favorites: getLocalStorage('favorites'),
-  count: 4,
-  page: 0,
+  count: COUNT_VACANCIES_ON_PAGE,
+  page: NUMBER_START_PAGE,
   total: 0,
 };
 
@@ -84,9 +89,9 @@ const vacanciesSlice = createSlice({
     builder.addCase(vacanciesReq.fulfilled, (state, action) => {
       state.vacanciesStatus = REQUEST_STATUS.fulfilled;
       state.total =
-        action.payload.total <= 500
+        action.payload.total <= MAX_TOTAL_RESPONCE
           ? Math.ceil(action.payload.total / state.count)
-          : Math.ceil(500 / state.count);
+          : Math.ceil(MAX_TOTAL_RESPONCE / state.count);
       state.vacancies = action.payload.objects;
     });
     builder.addCase(vacanciesReq.pending, (state) => {

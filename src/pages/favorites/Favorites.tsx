@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 
 import styles from './Favorites.module.scss';
@@ -17,6 +18,7 @@ export const Favorites = () => {
     (state) => state.vacancies
   );
   const [activePage, setactivePage] = useState(page + 1);
+  const [favoritesState] = useState<number[]>(favorites);
 
   useEffect(
     () => () => {
@@ -37,7 +39,37 @@ export const Favorites = () => {
     } else {
       dispatch(resetVacancies());
     }
-  }, [dispatch, favorites, favorites.length, activePage, count]);
+  }, [dispatch, count]);
+
+  useEffect(() => {
+    if (favorites.length) {
+      if (favoritesState.length !== favorites.length) {
+        dispatch(
+          vacanciesReq({
+            ids: [...favorites],
+            page: Math.ceil(favorites.length / count) - 1,
+            count: count,
+          })
+        );
+        setactivePage(Math.ceil(favorites.length / count));
+      }
+    } else {
+      dispatch(resetVacancies());
+    }
+  }, [count, dispatch, favorites]);
+
+  const handlePageChange = (value: number) => {
+    if (value !== activePage) {
+      setactivePage(value);
+      dispatch(
+        vacanciesReq({
+          ids: [...favorites],
+          page: value - 1,
+          count: count,
+        })
+      );
+    }
+  };
 
   return (
     <section className={styles.favorites}>
@@ -53,7 +85,7 @@ export const Favorites = () => {
               <div className={styles.favorites__pagination_box}>
                 <PaginationEl
                   activePage={activePage}
-                  pageOnChange={setactivePage}
+                  pageOnChange={handlePageChange}
                   total={total}
                   siblings={1}
                 />

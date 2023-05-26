@@ -12,7 +12,7 @@ export const Filters = (props: IFilters) => {
   const dispatch = useAppDispatch();
   const { catalogues } = useAppSelector((state) => state.catalogues);
   const [selectData] = useState<Array<{ value: string; label: string }>>(
-    useMemo(() => getSelectData(catalogues), [])
+    useMemo(() => getSelectData(catalogues), [catalogues])
   );
   const { keyword, catalogue, payment_from, payment_to } = useAppSelector((state) => state.filters);
 
@@ -38,7 +38,7 @@ export const Filters = (props: IFilters) => {
     if (!catalogue && !payment_from && !payment_to && !keyword) {
       props.sendFilters();
     }
-  }, [keyword, catalogue, payment_from, payment_to]);
+  }, [keyword, catalogue, payment_from, payment_to, props]);
 
   return (
     <>

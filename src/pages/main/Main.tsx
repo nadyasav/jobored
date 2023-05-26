@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { vacanciesReq } from '../../store/vacancies-slice';
 import { Preloader } from '../../components/preloader/Preloader';
-import { REQUEST_STATUS } from '../../constants/constants';
+import { NUMBER_START_PAGE, REQUEST_STATUS } from '../../constants/constants';
 import { cataloguesReq } from '../../store/catalogues-slice';
 import styles from './Main.module.scss';
 import { Filters } from '../../components/filters/Filters';
@@ -64,10 +64,12 @@ export const Main = () => {
     dispatch(
       vacanciesReq({
         ...requestParams,
-        page: activePage - 1,
+        page: NUMBER_START_PAGE,
       })
     );
-  }, [requestParams, activePage, dispatch]);
+
+    setactivePage(NUMBER_START_PAGE + 1);
+  }, [requestParams, dispatch]);
 
   const handleApplyFilters = () => {
     updateVacancies();
@@ -79,6 +81,18 @@ export const Main = () => {
 
   const handleFiltersBtnClick = (value: boolean) => {
     setFiltersBtnState(value);
+  };
+
+  const handlePageChange = (value: number) => {
+    if (value !== activePage) {
+      setactivePage(value);
+      dispatch(
+        vacanciesReq({
+          ...requestParams,
+          page: value - 1,
+        })
+      );
+    }
   };
 
   return (
@@ -131,7 +145,7 @@ export const Main = () => {
                 <div className={styles.main__pagination_box}>
                   <PaginationEl
                     activePage={activePage}
-                    pageOnChange={setactivePage}
+                    pageOnChange={handlePageChange}
                     total={total}
                     siblings={1}
                   />
