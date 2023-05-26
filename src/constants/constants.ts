@@ -28,3 +28,7 @@ export const CSS_COLORS_lIGHT = {
   accentColor: '#5e96fc',
   mainColor: '#232134',
 };
+
+export const NUMBER_START_PAGE = 0;
+export const MAX_TOTAL_RESPONCE = 500;
+export const COUNT_VACANCIES_ON_PAGE = 4;

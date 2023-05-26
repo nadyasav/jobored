@@ -8,7 +8,7 @@
   &__pagination_box {
     display: flex;
     justify-content: center;
-    margin-top: 2.5rem;
+    padding-top: 2.5rem;
     margin-top: auto;
   }
 
@@ -29,7 +29,6 @@
 
   &__cards {
     margin-top: 16px;
-    margin-bottom: 2.5rem;
   }
 
   &__card__empty {
