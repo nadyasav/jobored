@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 
 import styles from './Favorites.module.scss';
@@ -18,7 +17,6 @@ export const Favorites = () => {
     (state) => state.vacancies
   );
   const [activePage, setactivePage] = useState(page + 1);
-  const [favoritesState] = useState<number[]>(favorites);
 
   useEffect(
     () => () => {
@@ -29,33 +27,30 @@ export const Favorites = () => {
 
   useEffect(() => {
     if (favorites.length) {
-      dispatch(
-        vacanciesReq({
-          ids: [...favorites],
-          page: activePage - 1,
-          count: count,
-        })
-      );
-    } else {
-      dispatch(resetVacancies());
-    }
-  }, [dispatch, count]);
+      const totalPages = Math.ceil(favorites.length / count);
 
-  useEffect(() => {
-    if (favorites.length) {
-      if (favoritesState.length !== favorites.length) {
+      if (activePage > totalPages) {
         dispatch(
           vacanciesReq({
             ids: [...favorites],
-            page: Math.ceil(favorites.length / count) - 1,
+            page: totalPages - 1,
             count: count,
           })
         );
-        setactivePage(Math.ceil(favorites.length / count));
+        setactivePage(totalPages);
+      } else {
+        dispatch(
+          vacanciesReq({
+            ids: [...favorites],
+            page: activePage - 1,
+            count: count,
+          })
+        );
       }
     } else {
       dispatch(resetVacancies());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count, dispatch, favorites]);
 
   const handlePageChange = (value: number) => {
